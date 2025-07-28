@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rex Translator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <h1 class="title-text"><i class="fas fa-globe"></i> Rex Translator 🦖</h1>
+
+    <textarea id="inputText" placeholder="Enter text to translate..."></textarea>
+
+    <div class="selectors">
+      <label for="sourceLang">From:</label>
+      <select id="sourceLang">
+        <option value="auto">🌍 Detect Language</option>
+        <option value="en">English 🇺🇸</option>
+        <option value="hi">Hindi 🇮🇳</option>
+        <option value="bn">Bengali 🇧🇩</option>
+        <option value="fr">French 🇫🇷</option>
+        <option value="es">Spanish 🇪🇸</option>
+        <option value="de">German 🇩🇪</option>
+        <option value="it">Italian 🇮🇹 </option>
+        <option value="pt">Portuguese 🇵🇹</option>
+        <option value="ru">Russian 🇷🇺</option>
+        <option value="zh">Chinese 🇨🇳</option>
+        <option value="ja">Japanese 🇯🇵</option>
+        <option value="ko">Korean 🇰🇷</option>
+        <option value="ar">Arabic 🇸🇦 </option>
+        <option value="tr">Turkish 🇹🇷</option>
+      </select>
+
+      <label for="targetLang">To:</label>
+      <select id="targetLang">
+        <option value="en">English 🇺🇸</option>
+        <option value="hi">Hindi 🇮🇳</option>
+        <option value="bn">Bengali 🇧🇩</option>
+        <option value="fr">French 🇫🇷</option>
+        <option value="es">Spanish 🇪🇸</option>
+        <option value="de">German 🇩🇪</option>
+        <option value="it">Italian 🇮🇹 </option>
+        <option value="pt">Portuguese 🇵🇹</option>
+        <option value="ru">Russian 🇷🇺</option>
+        <option value="zh">Chinese 🇨🇳</option>
+        <option value="ja">Japanese 🇯🇵</option>
+        <option value="ko">Korean 🇰🇷</option>
+        <option value="ar">Arabic 🇸🇦 </option>
+        <option value="tr">Turkish 🇹🇷</option>
+      </select>
+    </div>
+
+    <button onclick="translateText()">Translate</button>
+
+    <h3>🔁 Translated Output:</h3>
+    <div id="outputText">---</div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+  const dragBox = document.querySelector('.container');
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  dragBox.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    offsetX = e.clientX - dragBox.offsetLeft;
+    offsetY = e.clientY - dragBox.offsetTop;
+    dragBox.style.position = 'absolute';
+    dragBox.style.zIndex = 1000;
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (isDragging) {
+      dragBox.style.left = `${e.clientX - offsetX}px`;
+      dragBox.style.top = `${e.clientY - offsetY}px`;
+    }
+  });
+
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+</script>
+
+</body>
+</html>
